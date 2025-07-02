@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Igniters - Youth Movement Ministry</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* Custom animation for image hover */
+        .gallery-item img {
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.8);
+        }
+        .gallery-item .overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        /* Mobile menu specific styles for animation */
+        #mobile-menu-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
+        #mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto; /* Allow clicks on overlay to close menu */
+        }
+
+        /* Hamburger icon animation */
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .hamburger-icon span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #4a5568; /* gray-700 */
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger-icon.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger-icon.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-icon.open span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-lg py-4 sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="#" class="text-2xl font-bold text-indigo-700 rounded-lg p-2 hover:bg-indigo-50 transition duration-300">
+                The Igniters
+            </a>
+            <nav class="hidden md:flex space-x-2">
+                <a href="#home" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Home
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#about" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    About Us
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#programs" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Programs
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#events" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Events
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#leaders" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Leaders
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#resources" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Resources
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#gallery" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Gallery
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#donate" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Donate
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+                <a href="#contact" class="group relative text-gray-600 hover:text-indigo-700 font-semibold transition duration-300 rounded-md px-4 py-2">
+                    Contact
+                    <span class="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+                </a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-indigo-700 focus:outline-none z-50">
+                <div class="hamburger-icon" id="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-0 pointer-events-none z-40"></div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl p-6 transform translate-x-full md:hidden z-50">
+            <div class="flex justify-end mb-6">
+                <button id="close-mobile-menu-button" class="text-gray-600 hover:text-indigo-700 focus:outline-none">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-4">
+                <a href="#home" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Home</a>
+                <a href="#about" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">About Us</a>
+                <a href="#programs" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Programs</a>
+                <a href="#events" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Events</a>
+                <a href="#leaders" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Leaders</a>
+                <a href="#resources" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Resources</a>
+                <a href="#gallery" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Gallery</a>
+                <a href="#donate" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Donate</a>
+                <a href="#contact" class="block text-gray-700 hover:text-indigo-700 font-semibold text-lg transition duration-300 rounded-md px-3 py-2 hover:bg-indigo-50">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-r from-indigo-600 to-purple-700 text-white py-20 md:py-32 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-10">
+            <!-- Placeholder for background image or pattern -->
+            <img src="logo.jpg/1920x1080/4F46E5/FFFFFF?text=Youth+Ministry+Background" alt="Background" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto text-center relative z-10 px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-down">
+                The Igniters
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up">
+                Igniting Passion, Empowering Purpose.
+            </p>
+            <a href="#about" class="bg-white text-indigo-700 hover:bg-indigo-100 px-8 py-4 rounded-full text-lg font-bold shadow-lg transform hover:scale-105 transition duration-300 ease-in-out inline-block">
+                Learn More
+            </a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">About The Igniters</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/6366F1/
+                    FFFFFF?text=THE+MOVEMENT" alt="THE IGNITERS" class="rounded-xl shadow-lg w-full h-auto object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <div class="md:w-1/2 text-lg leading-relaxed text-gray-700">
+                    <p class="mb-6">
+                        This MOVEMENT is organized to glorify God by conducting religious services, and teaching and training people in the Truth of God’s Word, the Bible, calling people to repentance from sin and to faith in Christ, making disciples of our Lord Jesus Christ, and edifying the Body of Christ.
+
+                        The Igniters is a youth movement dedicated to igniting revival—helping people discover purpose, equipping them to make an impact and witnessing for Jesus. We are dedicated to raising people who will influence all systems of the world for the Lord Jesus. 
+
+                    </p>
+                    <p class="mb-6">
+                        Our mission To be active in soul winning and edification of the saints through diverse means and equipping the young for end-time exploits.
+
+                    </p>
+                    <p>
+                        our vision is to see a generation of young people burning for Jesus, taking the Gospel in excellence to all nations—influencing all spheres of influence with Godly values.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do / Programs Section -->
+    <section id="programs" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">What We Do</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 border-t-4 border-indigo-500">
+                    <div class="text-5xl text-indigo-600 mb-6 text-center">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Spiritual Growth</h3>
+                    <p class="text-gray-700 text-center">
+                        Weekly Bible studies, prayer meetings, and spiritual retreats designed to deepen faith and understanding.
+                    </p>
+                </div>
+                <!-- Program Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 border-t-4 border-purple-500">
+                    <div class="text-5xl text-purple-600 mb-6 text-center">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Community & Fellowship</h3>
+                    <p class="text-gray-700 text-center">
+                        Fun social events, team-building activities, and mentorship programs to build lasting friendships.
+                    </p>
+                </div>
+                <!-- Program Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 border-t-4 border-green-500">
+                    <div class="text-5xl text-green-600 mb-6 text-center">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Leadership Development</h3>
+                    <p class="text-gray-700 text-center">
+                        Workshops, training sessions, and opportunities to lead and serve within the Movement and community.
+                    </p>
+                </div>
+                <!-- Program Card 4 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 border-t-4 border-red-500">
+                    <div class="text-5xl text-red-600 mb-6 text-center">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Outreach & Service</h3>
+                    <p class="text-gray-700 text-center">
+                        Engaging in local community service projects, missions, and acts of kindness to make a tangible difference.
+                    </p>
+                </div>
+                <!-- Program Card 5 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 border-t-4 border-yellow-500">
+                    <div class="text-5xl text-yellow-600 mb-6 text-center">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Education & Mentorship</h3>
+                    <p class="text-gray-700 text-center">
+                        Guidance on academic pursuits, career paths, and life skills from experienced mentors.
+                    </p>
+                </div>
+                <!-- Program Card 6 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300 border-t-4 border-blue-500">
+                    <div class="text-5xl text-blue-600 mb-6 text-center">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Arts & Creativity</h3>
+                    <p class="text-gray-700 text-center">
+                        Opportunities to express faith and talent through music, drama, visual arts, and more.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">What Our Members Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 rounded-xl shadow-md p-8 flex flex-col items-center text-center border-l-4 border-indigo-500">
+                    <img src="https://placehold.co/80x80/6366F1/FFFFFF?text=SE" alt="John Doe" class="w-20 h-20 rounded-full mb-4 object-cover">
+                    <p class="text-lg italic text-gray-700 mb-4">
+                        "The Igniters transformed my life. I found a community that truly cares and helped me discover my purpose."
+                    </p>
+                    <p class="font-semibold text-indigo-600">- Simon Eji Jr.</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 rounded-xl shadow-md p-8 flex flex-col items-center text-center border-l-4 border-purple-500">
+                    <img src="https://placehold.co/80x80/8B5CF6/FFFFFF?text=DO" alt="Jane A." class="w-20 h-20 rounded-full mb-4 object-cover">
+                    <p class="text-lg italic text-gray-700 mb-4">
+                        "I've grown so much in my faith and leadership skills. The programs are engaging and the mentors are amazing!"
+                    </p>
+                    <p class="font-semibold text-purple-600">- Delight Obande.</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 rounded-xl shadow-md p-8 flex flex-col items-center text-center border-l-4 border-green-500">
+                    <img src="https://placehold.co/80x80/10B981/FFFFFF?text=BB" alt="Sam M." class="w-20 h-20 rounded-full mb-4 object-cover">
+                    <p class="text-lg italic text-gray-700 mb-4">
+                        "Being part of The Igniters feels like family. We support each other and strive to make a difference."
+                    </p>
+                    <p class="font-semibold text-green-600">- Blessing Bliss.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Upcoming Events</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Event Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x300/4F46E5/FFFFFF?text=Youth+Conference" alt="Youth Conference" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Annual Conference</h3>
+                        <p class="text-indigo-600 font-medium mb-3"><i class="fas fa-calendar-alt mr-2"></i>August 15-17, 2025</p>
+                        <p class="text-gray-700 mb-4">
+                            Join us for an inspiring weekend of worship, powerful speakers, and fellowship. Register now!
+                        </p>
+                        <a href="submit_contact.php" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-full hover:bg-indigo-700 transition duration-300 text-sm font-semibold">
+                            Register Now <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Event Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x300/8B5CF6/FFFFFF?text=Community+Outreach" alt="Community Outreach" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Community Service Day</h3>
+                        <p class="text-purple-600 font-medium mb-3"><i class="fas fa-calendar-alt mr-2"></i>September 28, 2025</p>
+                        <p class="text-gray-700 mb-4">
+                            Let's give back to our community! Join us for a day of volunteering and making a difference.
+                        </p>
+                        <a href="#" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition duration-300 text-sm font-semibold">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Event Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                    <img src="https://placehold.co/600x300/10B981/FFFFFF?text=Leadership+Workshop" alt="Leadership Workshop" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Youth Leadership Workshop</h3>
+                        <p class="text-green-600 font-medium mb-3"><i class="fas fa-calendar-alt mr-2"></i>October 12, 2025</p>
+                        <p class="text-gray-700 mb-4">
+                            Develop essential leadership skills in this interactive workshop. Open to all youth members.
+                        </p>
+                        <a href="submit_contact.php" class="inline-block bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition duration-300 text-sm font-semibold">
+                            Sign Up <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaders Profiles Section -->
+    <section id="leaders" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Our Inspiring Leaders</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Leader 1 -->
+                <div class="bg-gray-50 rounded-xl shadow-md p-6 flex flex-col items-center text-center border-t-4 border-indigo-500">
+                    <img src="https://placehold.co/150x150/6366F1/FFFFFF?text=Leader+1" alt="Leader Name 1" class="w-36 h-36 rounded-full mb-4 object-cover shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">ONGBABO EDOH MICHAEL</h3>
+                    <p class="text-indigo-600 font-medium mb-3">President Pastor</p>
+                    <p class="text-gray-700 text-sm">
+                        Pastor Michael has dedicated over 15 years to youth ministry, guiding young hearts with wisdom and passion.
+                    </p>
+                </div>
+                <!-- Leader 2 -->
+                <div class="bg-gray-50 rounded-xl shadow-md p-6 flex flex-col items-center text-center border-t-4 border-purple-500">
+                    <img src="https://placehold.co/150x150/8B5CF6/FFFFFF?text=Leader+2" alt="Leader Name 2" class="w-36 h-36 rounded-full mb-4 object-cover shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Min. Eji Davies jr.</h3>
+                    <p class="text-purple-600 font-medium mb-3">Program Coordinator/Media</p>
+                    <p class="text-gray-700 text-sm">
+                        Min. Eji Davies Jr. excels at organizing engaging events and fostering a welcoming environment for all youth.
+                    </p>
+                </div>
+                <!-- Leader 3 -->
+                <div class="bg-gray-50 rounded-xl shadow-md p-6 flex flex-col items-center text-center border-t-4 border-green-500">
+                    <img src="https://placehold.co/150x150/10B981/FFFFFF?text=Leader+3" alt="Leader Name 3" class="w-36 h-36 rounded-full mb-4 object-cover shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Min. Eji Agbo Gabriel Jr.</h3>
+                    <p class="text-green-600 font-medium mb-3">Mentorship Lead</p>
+                    <p class="text-gray-700 text-sm">
+                        Min. Eji A.G provides invaluable guidance, helping youth navigate challenges and discover their strengths.
+                    </p>
+                </div>
+                <!-- Leader 4 -->
+                <div class="bg-gray-50 rounded-xl shadow-md p-6 flex flex-col items-center text-center border-t-4 border-yellow-500">
+                    <img src="https://placehold.co/150x150/F59E0B/FFFFFF?text=Leader+4" alt="Leader Name 4" class="w-36 h-36 rounded-full mb-4 object-cover shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-1">Pastor Benard Samuel O.</h3>
+                    <p class="text-yellow-600 font-medium mb-3">Community Outreach Director</p>
+                    <p class="text-gray-700 text-sm">
+                        Pastor Bensam leads our efforts to serve the wider community, inspiring youth to make a tangible impact.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section (Book, Video, Audio Downloads) -->
+    <section id="resources" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Resources for Growth</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Book Download Card -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition duration-300 border-t-4 border-blue-500">
+                    <div class="text-5xl text-blue-600 mb-6">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">The Igniters' Guide to Purpose</h3>
+                    <p class="text-gray-700 mb-6">
+                        Download our foundational book on discovering your divine purpose and living a life of impact.
+                    </p>
+                    <a href="https://example.com/your-book.pdf" download class="inline-block bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition duration-300 font-semibold shadow-md">
+                        <i class="fas fa-download mr-2"></i> Download Book
+                    </a>
+                </div>
+                <!-- Video Download Card -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition duration-300 border-t-4 border-red-500">
+                    <div class="text-5xl text-red-600 mb-6">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">TEWCON'S Highlights</h3>
+                    <p class="text-gray-700 mb-6">
+                        Relive the best moments from our last annual conference. Inspiring messages and vibrant worship.
+                    </p>
+                    <a href="igniter 4.mp4" download class="inline-block bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition duration-300 font-semibold shadow-md">
+                        <i class="fas fa-download mr-2"></i> Download Video
+                    </a>
+                </div>
+                <!-- Audio Download Card -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center transform hover:scale-105 transition duration-300 border-t-4 border-green-500">
+                    <div class="text-5xl text-green-600 mb-6">
+                        <i class="fas fa-headphones-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">Weekly Devotional Podcast</h3>
+                    <p class="text-gray-700 mb-6">
+                        Listen to our latest devotional messages for spiritual encouragement and daily inspiration.
+                    </p>
+                    <a href="https://example.com/your-audio.mp3" download class="inline-block bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition duration-300 font-semibold shadow-md">
+                        <i class="fas fa-download mr-2"></i> Download Audio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Our Moments</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="relative overflow-hidden rounded-xl shadow-lg group gallery-item">
+                    <img src="https://placehold.co/600x400/FFD700/000000?text=Youth+Event+1" alt="Youth Event 1" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                        <p class="text-white text-lg font-semibold">Community Outreach Day</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="relative overflow-hidden rounded-xl shadow-lg group gallery-item">
+                    <img src="https://placehold.co/600x400/8A2BE2/FFFFFF?text=Youth+Event+2" alt="Youth Event 2" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                        <p class="text-white text-lg font-semibold">Leadership Workshop</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 3 -->
+                <div class="relative overflow-hidden rounded-xl shadow-lg group gallery-item">
+                    <img src="https://placehold.co/600x400/00CED1/FFFFFF?text=Youth+Event+3" alt="Youth Event 3" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                        <p class="text-white text-lg font-semibold">Annual Retreat</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 4 -->
+                <div class="relative overflow-hidden rounded-xl shadow-lg group gallery-item">
+                    <img src="https://placehold.co/600x400/FF6347/FFFFFF?text=Youth+Event+4" alt="Youth Event 4" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                        <p class="text-white text-lg font-semibold">Fellowship Fun</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 5 -->
+                <div class="relative overflow-hidden rounded-xl shadow-lg group gallery-item">
+                    <img src="https://placehold.co/600x400/32CD32/FFFFFF?text=Youth+Event+5" alt="Youth Event 5" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                        <p class="text-white text-lg font-semibold">Worship Night</p>
+                    </div>
+                </div>
+                <!-- Gallery Item 6 -->
+                <div class="relative overflow-hidden rounded-xl shadow-lg group gallery-item">
+                    <img src="https://placehold.co/600x400/4682B4/FFFFFF?text=Youth+Event+6" alt="Youth Event 6" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center overlay">
+                        <p class="text-white text-lg font-semibold">Bible Study Session</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    //<!-- Payment Gateway / Donate Section -->
+    <!--<section id="donate" class="py-16 md:py-24 bg-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Support Our Ministry</h2>
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12 border-t-4 border-purple-500">
+                <p class="text-lg text-gray-700 mb-6">
+                    Your generous contributions help us continue our mission of igniting passion and empowering purpose in young lives. Every donation, no matter the size, makes a significant impact.
+                </p>
+                <p class="text-md text-gray-600 mb-8 italic">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    This is a placeholder for a secure payment gateway integration. In a live environment, this button would connect to a service like Stripe or PayPal.
+                </p>
+                <button id="donate-button" class="bg-purple-600 text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg transform hover:scale-105 hover:bg-purple-700 transition duration-300 ease-in-out">
+                    <i class="fas fa-heart mr-3"></i> Donate Now
+                </button>
+                <div id="donation-message" class="mt-6 p-4 bg-blue-100 text-blue-700 rounded-md hidden">
+                    Thank you for your interest in donating! In a live website, clicking this button would initiate a secure payment process via a payment gateway (e.g., Stripe, PayPal).
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Us Section (React Component will render here) -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-indigo-700 mb-12">Get In Touch</h2>
+            <div id="contact-form-root" class="max-w-2xl mx-auto bg-gray-50 rounded-xl shadow-lg p-8 md:p-12 border-t-4 border-indigo-500">
+                <!-- React ContactForm component will be mounted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-3xl font-bold text-indigo-400 mb-2">The Igniters</h3>
+                    <p class="text-gray-400">Igniting Passion, Empowering Purpose.</p>
+                </div>
+                <div class="mb-6 md:mb-0">
+                    <h4 class="text-xl font-semibold mb-3">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#programs" class="text-gray-400 hover:text-white transition duration-300">Programs</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white transition duration-300">Events</a></li>
+                        <li><a href="#leaders" class="text-gray-400 hover:text-white transition duration-300">Leaders</a></li>
+                        <li><a href="#resources" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition duration-300">Gallery</a></li>
+                        <li><a href="#donate" class="text-gray-400 hover:text-white transition duration-300">Donate</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-3">Connect With Us</h4>
+                    <div class="flex justify-center space-x-4">
+                        <a href="www.facebook.com/@mikailrealms" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-2xl transition duration-300"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-gray-700 my-8">
+            <p class="text-gray-500 text-sm">&copy; 2025 The Igniters. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- React and ReactDOM CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX transformation in browser (for development, for production pre-compile JSX) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // React Contact Form Component
+        const ContactForm = () => {
+            const [formData, setFormData] = React.useState({
+                name: '',
+                email: '',
+                message: ''
+            });
+            const [status, setStatus] = React.useState(''); // 'success', 'error', 'submitting', ''
+
+            const handleChange = (e) => {
+                const { name, value } = e.target;
+                setFormData(prevData => ({
+                    ...prevData,
+                    [name]: value
+                }));
+            };
+
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                setStatus('submitting');
+
+                // Basic client-side validation
+                if (!formData.name || !formData.email || !formData.message) {
+                    setStatus('error');
+                    setTimeout(() => setStatus(''), 3000); // Clear error after 3 seconds
+                    return;
+                }
+
+                try {
+                    // Send data to the PHP script
+                    const response = await fetch('submit_contact.php', { // ** IMPORTANT: Ensure this path is correct on your server **
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        setStatus('success');
+                        setFormData({ name: '', email: '', message: '' }); // Clear form
+                    } else {
+                        setStatus('error');
+                        console.error('Server error:', result.message);
+                    }
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    setStatus('error');
+                } finally {
+                    // Clear status message after a few seconds
+                    setTimeout(() => setStatus(''), 5000);
+                }
+            };
+
+            return (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            placeholder="Your Name"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            placeholder="your.email@example.com"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            value={formData.message}
+                            onChange={handleChange}
+                            className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            placeholder="Your message to us..."
+                            required
+                        ></textarea>
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300"
+                        disabled={status === 'submitting'}
+                    >
+                        {status === 'submitting' ? (
+                            <span className="flex items-center">
+                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Submitting...
+                            </span>
+                        ) : (
+                            'Send Message'
+                        )}
+                    </button>
+
+                    {status === 'success' && (
+                        <div className="mt-4 p-3 bg-green-100 text-green-700 rounded-md text-center">
+                            Message sent successfully! We'll get back to you soon.
+                        </div>
+                    )}
+                    {status === 'error' && (
+                        <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-md text-center">
+                            Failed to send message. Please try again.
+                        </div>
+                    )}
+                </form>
+            );
+        };
+
+        // Render the React component
+        const contactFormRoot = document.getElementById('contact-form-root');
+        if (contactFormRoot) {
+            ReactDOM.createRoot(contactFormRoot).render(<ContactForm />);
+        }
+    </script>
+
+    <script>
+        // JavaScript for mobile menu toggle and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu-button');
+
+            const donateButton = document.getElementById('donate-button');
+            const donationMessage = document.getElementById('donation-message');
+
+            // Function to open mobile menu
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                hamburgerIcon.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            }
+
+            // Function to close mobile menu
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                hamburgerIcon.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            if (mobileMenuButton && mobileMenu && mobileMenuOverlay && hamburgerIcon && closeMobileMenuButton) {
+                mobileMenuButton.addEventListener('click', openMobileMenu);
+                closeMobileMenuButton.addEventListener('click', closeMobileMenu);
+                mobileMenuOverlay.addEventListener('click', closeMobileMenu); // Close when clicking outside menu
+
+                // Close mobile menu when a link is clicked
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        closeMobileMenu();
+                    });
+                });
+            }
+
+            // JavaScript for the Donate button placeholder
+            if (donateButton && donationMessage) {
+                donateButton.addEventListener('click', function() {
+                    donationMessage.classList.remove('hidden');
+                    // Hide the message after 7 seconds
+                    setTimeout(() => {
+                        donationMessage.classList.add('hidden');
+                    }, 7000);
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
+-
